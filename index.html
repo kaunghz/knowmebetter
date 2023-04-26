@@ -31,7 +31,7 @@
             }
 
             readTextFile("questions.txt", function(lines) {
-                console.log(lines.length);
+                console.log(lines);
                 var index = Math.floor(Math.random() * 1000) % lines.length;
                 console.log(index)
                 var typed = new Typed('#element', {
