@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>KnowMeBetter</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>
+                <span id="element"></span>
+            </h1>
+        </div>
+
+        <!-- Load library from the CDN -->
+        <!-- https://github.com/mattboldt/typed.js/ -->
+        <script src="https://unpkg.com/typed.js@2.0.15/dist/typed.umd.js"></script>
+      
+        <script>
+            function readTextFile(file, callback) {
+                var rawFile = new XMLHttpRequest();
+                rawFile.open("GET", file, true);
+                rawFile.onreadystatechange = function() {
+                    if (rawFile.readyState === 4 && rawFile.status === 200) {
+                        var allText = rawFile.responseText;
+                        var arrayOfLines = allText.split('\n');
+                        callback(arrayOfLines);
+                    }
+                }
+                rawFile.send();
+            }
+
+            readTextFile("questions.txt", function(lines) {
+                console.log(lines.length);
+                var index = Math.floor(Math.random() * 1000) % lines.length;
+                console.log(index)
+                var typed = new Typed('#element', {
+                    strings: [lines[index]],
+                    typeSpeed: 30,
+                    cursorChar: '?',
+                });
+            });
+            
+            
+        </script>
+
+    </body>
+</html>
